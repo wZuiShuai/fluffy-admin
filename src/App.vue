@@ -1,26 +1,18 @@
 <template>
-  <div @click="dd">12132</div>
-  <el-button type="primary">Primary</el-button>
+  <el-config-provider :locale="i18nLocale">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
-<script setup lang="ts">
-import { ElMessage, ElMessageBox } from "element-plus"
-import type { Action } from "element-plus"
-const dd = () => {
-  console.log(12313)
+<script setup lang="ts" name="app">
+import zhCn from "element-plus/es/locale/lang/zh-cn"
+import en from "element-plus/es/locale/lang/en"
+import { computed, ref } from "vue"
 
-  ElMessageBox.alert("This is a message", "Title", {
-    // if you want to disable its autofocus
-    // autofocus: false,
-    confirmButtonText: "OK",
-    callback: (action: Action) => {
-      ElMessage({
-        type: "info",
-        message: `action: ${action}`,
-      })
-    },
-  })
-}
+// element 语言配置
+const i18nLocale = computed(() => {
+  return "zh" == "zh" ? zhCn : en
+})
 </script>
 
 <style scoped></style>
