@@ -7,11 +7,13 @@
 <script setup lang="ts" name="app">
 import zhCn from "element-plus/es/locale/lang/zh-cn"
 import en from "element-plus/es/locale/lang/en"
-import { computed, ref } from "vue"
+import { computed } from "vue"
+import { main } from "@/store"
+const mainStore = main()
 
 // element 语言配置
 const i18nLocale = computed(() => {
-  return "zh" == "zh" ? zhCn : en
+  return mainStore.i18n == "zh" ? zhCn : en
 })
 </script>
 

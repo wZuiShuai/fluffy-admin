@@ -13,6 +13,8 @@ export const main = defineStore("main", {
     token: "12313212",
     // userInfo
     userInfo: {},
+    //国际化
+    i18n: "zh",
   }),
   getters: {},
   actions: {},

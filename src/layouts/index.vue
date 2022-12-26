@@ -1,7 +1,18 @@
 <template>
-  <div>123</div>
+  <el-container>
+    <el-aside width="200px">Aside</el-aside>
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>Main</el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.el-container {
+  height: 100%;
+  width: 100%;
+}
+</style>
