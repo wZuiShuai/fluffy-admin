@@ -4,10 +4,6 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios"
-import {
-  showFullScreenLoading,
-  tryHideFullScreenLoading,
-} from "@/config/serviceLoading"
 // import { ResultData } from "@/api/interface";
 import { ResultEnum } from "@/api/config/httpEnum"
 import { checkStatus } from "@/api/config/checkStatus"
@@ -44,8 +40,6 @@ class RequestHttp {
      */
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        // * 如果当前请求不需要显示 loading,在 api 服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
-        config.headers!.noLoading || showFullScreenLoading()
         const token: string = main().$state.token
         return {
           ...config,
@@ -64,8 +58,6 @@ class RequestHttp {
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
-        // * 在请求结束后，并关闭请求 loading
-        tryHideFullScreenLoading()
         // * 登陆失效（code == 599）
         if (data.code == ResultEnum.OVERDUE) {
           ElMessage.error(data.msg)
@@ -74,7 +66,7 @@ class RequestHttp {
           return Promise.reject(data)
         }
         // * 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
-        if (data.code && data.code !== ResultEnum.SUCCESS) {
+        if (data.code && data.code !== ResultEnum.SUCCESS && data.code !== 1) {
           ElMessage.error(data.msg)
           return Promise.reject(data)
         }
@@ -83,7 +75,6 @@ class RequestHttp {
       },
       async (error: AxiosError) => {
         const { response } = error
-        tryHideFullScreenLoading()
         // 请求超时单独判断，因为请求超时没有 response
         if (error.message.indexOf("timeout") !== -1)
           ElMessage.error("请求超时！请您稍后重试")

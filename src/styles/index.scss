@@ -12,6 +12,11 @@ body,
   width: 100%;
 }
 
+#app > div:first-child {
+  height: 100%;
+  width: 100%;
+}
+
 *,
 ::before,
 ::after {
@@ -42,4 +47,21 @@ textarea {
   outline: none;
   border: none;
   resize: none;
+}
+
+.f-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-column-between {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.p-15 {
+  padding: 3.75rem;
 }
