@@ -32,8 +32,11 @@ import { Login } from '@/interface/index'
 import { loginApi } from '@/api/modules/login'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import {main} from '@/store/index'
 
 const title = import.meta.env.VITE_TITLE // 环境变量中读取
+
+const mainState = main()
 
 // 定义 formRef（校验规则）
 const loginFormRef = ref<FormInstance>()
@@ -65,11 +68,15 @@ const login = async (formEl: FormInstance | undefined) => {
         if (valid) {
             loading.value = true
             try {
-                await loginApi(loginForm)
+                const res = await loginApi(loginForm)
                 ElMessage({
                     message: '登录成功',
                     type: 'success',
                 })
+                mainState.token = res.data.token
+                // const resPages = await getPages()
+                // console.log(resPages.data.role.menus)
+
             } finally {
                 loading.value = false
             }

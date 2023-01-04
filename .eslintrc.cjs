@@ -101,7 +101,9 @@ module.exports = {
             'math': 'always'
         }],
         'vue/multi-word-component-names': 0, //文件名称检测
-        'vue/comment-directive': 'off' //html为根文件
+        'vue/comment-directive': 'off', //html为根文件
+        '@typescript-eslint/no-namespace': 'off',
+        '@typescript-eslint/no-explicit-any': ['off']
 
     }
 }

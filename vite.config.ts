@@ -35,7 +35,7 @@ export default defineConfig({
         // 跨域代理配置
         proxy: {
             '/api': {
-                target: 'http://golf.zhenyujm.com/admin/user/login',
+                target: 'http://golf.zhenyujm.com/admin',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ''),
             },
