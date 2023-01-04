@@ -13,7 +13,7 @@ const mainStore = main()
 
 // element 语言配置
 const i18nLocale = computed(() => {
-    return mainStore.i18n == 'zh' ? zhCn : en
+    return mainStore.i18n === 'zh' ? zhCn : en
 })
 </script>
 

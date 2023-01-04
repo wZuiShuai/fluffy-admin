@@ -100,12 +100,8 @@ module.exports = {
             'svg': 'always',
             'math': 'always'
         }],
-        'vue/multi-word-component-names': [
-            'error',
-            {
-                ignores: ['index'], //需要忽略的组件名
-            },
-        ]
+        'vue/multi-word-component-names': 0, //文件名称检测
+        'vue/comment-directive': 'off' //html为根文件
 
     }
 }
