@@ -33,12 +33,19 @@
           size="large"
           type="primary"
           :loading="loading"
-          @click="toggleDark()"
+          @click="login(loginFormRef)"
           >登录</el-button
         >
       </div>
     </div>
   </div>
+  <el-button type="primary">Primary</el-button>
+  <el-button>Default</el-button>
+  <el-button type="primary">Primary</el-button>
+  <el-button type="success">Success</el-button>
+  <el-button type="info">Info</el-button>
+  <el-button type="warning">Warning</el-button>
+  <el-button type="danger">Danger</el-button>
 </template>
 
 <script setup lang="ts" name="login">
@@ -46,10 +53,7 @@ import { reactive, ref } from "vue"
 import { Login } from "@/interface/index"
 import { loginApi } from "@/api/modules/login"
 import type { FormInstance, FormRules } from "element-plus"
-import { useDark, useToggle } from "@vueuse/core"
-
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+import { ElMessage } from "element-plus"
 
 const title = import.meta.env.VITE_TITLE // 环境变量中读取
 

@@ -25,6 +25,21 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    // 服务器主机名，如果允许外部访问，可设置为 "0.0.0.0"
+    host: "0.0.0.0",
+    port: 8080,
+    open: true,
+    cors: true,
+    // 跨域代理配置
+    proxy: {
+      "/api": {
+        target: "http://golf.zhenyujm.com/admin/user/login",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   plugins: [
     vue(),
     vueSetupExtend(),
@@ -35,10 +50,9 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver({
           importStyle: "sass",
-          // directives: true,
-          // version: "2.1.5",
         }),
       ],
+      dts: "src/components.d.ts",
     }),
   ],
   base: "./", // 设置打包路径
