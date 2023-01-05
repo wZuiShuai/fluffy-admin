@@ -6,7 +6,7 @@ import { RouteRecordRaw } from 'vue-router'
 export const staticRouter: RouteRecordRaw[] = [
     {
         path: '/',
-        redirect: { name: 'login' },
+        redirect: { name: 'home' },
     },
     {
         path: '/login',
@@ -20,9 +20,38 @@ export const staticRouter: RouteRecordRaw[] = [
         path: '/layout',
         name: 'layout',
         component: () => import('@/layouts/index.vue'),
-        // component: () => import("@/layouts/indexAsync.vue"),
-        // redirect: { name: "home" },
-        children: [],
+        redirect: { name: 'home' },
+        children: [
+            {
+                path: '/home',
+                name: 'home',
+                component: () => import('@/views/home/index.vue'),
+                meta:{
+                    icon:'HomeFilled',
+                    title:'首页',
+                }
+            },
+            {
+                path: '/ho',
+                name: 'home222',
+                component: () => import('@/views/home/index.vue'),
+                meta:{
+                    icon:'EditPen',
+                    title:'首页123',
+                },
+                children: [
+                    {
+                        path: '/h',
+                        name: 'home3333',
+                        component: () => import('@/views/home/index.vue'),
+                        meta:{
+                            icon:'HomeFilled',
+                            title:'首页22',
+                        }
+                    },
+                ]
+            }
+        ],
     },
 ]
 

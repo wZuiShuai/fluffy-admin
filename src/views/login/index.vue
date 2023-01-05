@@ -32,7 +32,7 @@ import { Login } from '@/interface/index'
 import { loginApi } from '@/api/modules/login'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import {main} from '@/store/index'
+import { main } from '@/store/index'
 
 const title = import.meta.env.VITE_TITLE // 环境变量中读取
 

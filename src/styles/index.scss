@@ -1,67 +1,82 @@
 @use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
 
 html {
-  font-size: 16px;
-  box-sizing: border-box;
+    font-size: 16px;
+    box-sizing: border-box;
+    --el-color-active: #eaf0f1;
+    --el-header-hight: 55px
+}
+
+html.dark {
+    // filter: invert(1);
+    /* 自定义深色背景颜色 */
+    --el-color-active: #150f0e;
 }
 
 html,
 body,
 #app {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
-#app > div:first-child {
-  height: 100%;
-  width: 100%;
+
+#app>div:first-child {
+    height: 100%;
+    width: 100%;
 }
 
 *,
 ::before,
 ::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 a:hover,
 a:link,
 a:visited,
 a:active {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 input,
 textarea {
-  outline: none;
-  border: none;
-  resize: none;
+    outline: none;
+    border: none;
+    resize: none;
 }
 
 .f-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .f-column-between {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .p-15 {
-  padding: 0.93rem;
+    padding: 0.93rem;
 }

@@ -103,7 +103,8 @@ module.exports = {
         'vue/multi-word-component-names': 0, //文件名称检测
         'vue/comment-directive': 'off', //html为根文件
         '@typescript-eslint/no-namespace': 'off',
-        '@typescript-eslint/no-explicit-any': ['off']
+        '@typescript-eslint/no-explicit-any': ['off'],
+        // 'vue/require-component-is':'off'  //component必须使用v-bind
 
     }
 }

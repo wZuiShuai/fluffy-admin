@@ -10,19 +10,27 @@ export const main = defineStore('main', {
     // state: 返回对象的函数
     state: () => ({
     // token
-        token: '12313212',
+        token: '',
         // userInfo
         userInfo: {},
         //国际化
         i18n: 'zh',
+        isExpand:true
     }),
     getters: {},
     actions: {},
-    persist: {
-        key: 'msg',
-        storage: localStorage,
-    // paths: [],
-    },
+    persist: [
+        {
+            key: 'msg',
+            storage: localStorage,
+            paths: ['token','userInfo','i18n'],
+        },
+        {
+            key: 'isExpand',
+            storage: sessionStorage,
+            paths: ['isExpand'],
+        }
+    ]
 })
 
 export default pinia
