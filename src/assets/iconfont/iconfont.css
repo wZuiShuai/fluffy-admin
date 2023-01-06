@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3720094 */
+  src: url('iconfont.ttf?t=1672965461082') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-quanping:before {
+  content: "\e8fa";
+}
+
+.icon-tuichuquanping:before {
+  content: "\e8fb";
+}
+

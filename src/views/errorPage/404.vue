@@ -10,4 +10,8 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.el-empty{
+    height: 100%;
+}
+</style>

@@ -7,7 +7,7 @@
         <el-scrollbar>
             <el-menu
                 :default-active="activeMenu"
-                :router="false"
+                :router="true"
                 :collapse="!isExpand"
                 :collapse-transition="false"
                 :unique-opened="true"
@@ -76,8 +76,16 @@ const [router, route] = [useRouter(), useRoute()]
 const layoutChildren: any = router.options.routes.find(e => e.name === 'layout')?.children
 
 const activeMenu = computed(() => route.meta.activeMenu ? route.meta.activeMenu : route.path) as any
+// console.log(activeMenu.value)
 
-
+//根据屏幕大小判断菜单栏是否展开
+const screenWidth = document.body.clientWidth
+if (screenWidth < 1200) {
+    mainState.isExpand = false
+}
+if (screenWidth > 1200) {
+    mainState.isExpand = true
+}
 </script>
 
 <style scoped lang="scss">

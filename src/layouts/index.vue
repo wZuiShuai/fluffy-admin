@@ -3,7 +3,9 @@
         <el-aside><Menu /></el-aside>
         <el-container>
             <el-header><Header /></el-header>
-            <el-main>Main</el-main>
+            <el-main>
+                <router-view />
+            </el-main>
         </el-container>
     </el-container>
 </template>
@@ -28,5 +30,22 @@ import Header from '@/layouts/components/header.vue'
         height: var(--el-header-hight);
         border-bottom: 0.5px solid var(--el-border-color);
     }
+}
+
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+	transition: all 0.2s;
+}
+.fade-transform-enter-from {
+	opacity: 0;
+	transition: all 0.2s;
+	transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+	opacity: 0;
+	transition: all 0.2s;
+	transform: translateX(30px);
 }
 </style>

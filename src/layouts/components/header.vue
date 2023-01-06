@@ -15,9 +15,20 @@
                 </transition-group>
             </el-breadcrumb>
         </div>
-        <div class="header-right">
+        <div class="header-right f-between">
             <el-icon @click="toggleDark()"><component :is="isDark ? 'Moon' : 'Sunny'" /></el-icon>
-            <el-icon style="transform: rotate(0.125turn);" @click="toggle()"><component :is="isFullscreen ? 'Rank' : 'Rank'" /></el-icon>
+            <i :class="['el-icon','iconfont', isFullscreen ? 'icon-tuichuquanping' : 'icon-quanping']" @click="toggle()"></i>
+            <el-dropdown trigger="click">
+                <div class="avatar">
+                    <img src="@/assets/avatar.webp" alt="avatar" />
+                </div>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <!-- divided 分隔符 -->
+                        <el-dropdown-item icon="SwitchButton" @click="logout">退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
         </div>
     </div>
 </template>
@@ -25,20 +36,21 @@
 <script setup lang="ts" name="layouts-header">
 import { main } from '@/store'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute,useRouter } from 'vue-router'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 import { useFullscreen } from '@vueuse/core'
 
-import { useDark, useToggle } from '@vueuse/core'
-//黑暗模式
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+import { inject } from 'vue'
+
+const toggleDark:any = inject('toggleDark')
+const isDark:string | undefined = inject('isDark')
 //全屏
 const { isFullscreen, toggle } = useFullscreen()
 
 const mainState = main()
 
-const route = useRoute()
+const [route,router] = [useRoute(),useRouter()]
 
 const isExpand = computed(() => mainState.isExpand)
 const collapse = () => {
@@ -47,7 +59,21 @@ const collapse = () => {
 
 const bread = route.matched.splice(1,route.matched.length - 1).map(e => Object.assign(e.meta,{path:e.path}))
 
+//退出
+const logout = () => {
+    ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+    }).then(async () => {
+        localStorage.clear()
+        sessionStorage.clear()
+        // 重定向到登陆页
+        router.replace('/login')
+        ElMessage.success('退出登录成功！')
+    })
 
+}
 </script>
 
 <style scoped lang="scss">
@@ -74,6 +100,16 @@ const bread = route.matched.splice(1,route.matched.length - 1).map(e => Object.a
             margin-right: 1rem;
             cursor: pointer;
             font-size: 1.125rem;
+        }
+
+        .avatar{
+            display: block;
+            width: 2.5rem;
+            height: 2.5rem;
+            img{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 

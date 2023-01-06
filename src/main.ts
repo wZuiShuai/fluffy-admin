@@ -1,8 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from '@/routers'
+import router from '@/routers/index'
 import pinia from '@/store'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+// iconfont css
+import '@/assets/iconfont/iconfont.css'
 
 import '@/styles/index.scss'
 // If you want to use ElMessage,ElMessageBox, import it.

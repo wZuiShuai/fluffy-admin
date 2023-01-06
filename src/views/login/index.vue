@@ -87,6 +87,7 @@ const login = async (formEl: FormInstance | undefined) => {
 
 <style scoped lang="scss">
 .login {
+    height: 100%;
     background: url("@/assets/images/login_bg.webp") no-repeat;
     background-size: cover;
     display: flex;
