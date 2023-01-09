@@ -89,12 +89,14 @@ const login = async (formEl: FormInstance | undefined) => {
 .login {
     height: 100%;
     background: url("@/assets/images/login_bg.webp") no-repeat;
+    // background-color: var(--el-bg-color);
     background-size: cover;
     display: flex;
     flex-direction: column;
 
     .loginForm {
-        background-color: rgba(255, 255, 255, 0.6);
+        // background-color: var(--el-bg-color);
+        background-color: var(--el-bg-color);
         margin: auto;
         border-radius: 0.6rem;
         box-shadow: 0 1px 2px -2px #00000029, 0 3px 6px #0000001f,

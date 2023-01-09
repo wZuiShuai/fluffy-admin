@@ -16,8 +16,10 @@
             </el-breadcrumb>
         </div>
         <div class="header-right f-between">
-            <el-icon @click="toggleDark()"><component :is="isDark ? 'Moon' : 'Sunny'" /></el-icon>
-            <i :class="['el-icon','iconfont', isFullscreen ? 'icon-tuichuquanping' : 'icon-quanping']" @click="toggle()"></i>
+            <el-icon @click="toggleDark()">
+                <component :is="isDark ? 'Moon' : 'Sunny'" />
+            </el-icon>
+            <i :class="['el-icon', 'iconfont', isFullscreen ? 'icon-tuichuquanping' : 'icon-quanping']" @click="toggle()"></i>
             <el-dropdown trigger="click">
                 <div class="avatar">
                     <img src="@/assets/avatar.webp" alt="avatar" />
@@ -36,28 +38,28 @@
 <script setup lang="ts" name="layouts-header">
 import { main } from '@/store'
 import { computed } from 'vue'
-import { useRoute,useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 import { useFullscreen } from '@vueuse/core'
 
 import { inject } from 'vue'
 
-const toggleDark:any = inject('toggleDark')
-const isDark:string | undefined = inject('isDark')
+const toggleDark: any = inject('toggleDark')
+const isDark: string | undefined = inject('isDark')
 //全屏
 const { isFullscreen, toggle } = useFullscreen()
 
 const mainState = main()
 
-const [route,router] = [useRoute(),useRouter()]
+const [route, router] = [useRoute(), useRouter()]
 
 const isExpand = computed(() => mainState.isExpand)
 const collapse = () => {
     mainState.isExpand = !mainState.isExpand
 }
-
-const bread = route.matched.splice(1,route.matched.length - 1).map(e => Object.assign(e.meta,{path:e.path}))
+// 计算面包屑
+const bread = computed(() => route.matched.filter(e => e.name !== 'layout').map(e => Object.assign(e.meta, { path: e.path })))
 
 //退出
 const logout = () => {
@@ -87,26 +89,29 @@ const logout = () => {
             cursor: pointer;
         }
 
-        .el-breadcrumb{
+        .el-breadcrumb {
             font-size: 0.875rem;
-            .el-icon{
+
+            .el-icon {
                 margin-right: 6px;
             }
         }
 
     }
-    .header-right{
-        .el-icon{
+
+    .header-right {
+        .el-icon {
             margin-right: 1rem;
             cursor: pointer;
             font-size: 1.125rem;
         }
 
-        .avatar{
+        .avatar {
             display: block;
             width: 2.5rem;
             height: 2.5rem;
-            img{
+
+            img {
                 width: 100%;
                 height: 100%;
             }
@@ -115,7 +120,7 @@ const logout = () => {
 
 }
 
-:deep(.el-breadcrumb__inner){
+:deep(.el-breadcrumb__inner) {
     display: flex;
     align-items: center;
 }
@@ -123,15 +128,16 @@ const logout = () => {
 /* Breadcrumb */
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
-	transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
+
 .breadcrumb-enter-from,
 .breadcrumb-leave-active {
-	opacity: 0;
-	transform: translateX(10px);
+    opacity: 0;
+    transform: translateX(10px);
 }
+
 .breadcrumb-leave-active {
-	position: absolute;
-	z-index: -1;
+    display: none;
 }
 </style>

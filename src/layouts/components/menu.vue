@@ -7,32 +7,31 @@
         <el-scrollbar>
             <el-menu
                 :default-active="activeMenu"
-                :router="true"
+                :router="false"
                 :collapse="!isExpand"
                 :collapse-transition="false"
                 :unique-opened="true"
             >
-                <!-- 嵌套递归 -->
                 <template v-for="subItem in layoutChildren" :key="subItem.name">
                     <!-- 有子路由 -->
-                    <el-sub-menu v-if="subItem.children && subItem.children.length > 0" :index="subItem.path">
+                    <el-sub-menu v-if="subItem.children && subItem.children.length > 0" :index="subItem.name">
                         <template #title>
                             <el-icon>
                                 <component :is="subItem.meta.icon" />
                             </el-icon>
                             <span>{{ subItem.meta.title }}</span>
                         </template>
-
+                        <!-- 嵌套递归 -->
                         <template v-for="subItem2 in subItem.children" :key="subItem2.name">
                             <!-- 有子路由 -->
-                            <el-sub-menu v-if="subItem2.children && subItem2.children.length > 0" :index="subItem2.path">
+                            <el-sub-menu v-if="subItem2.children && subItem2.children.length > 0" :index="subItem2.name">
                                 <template #title>
                                     <el-icon>
                                         <component :is="subItem2.meta.icon" />
                                     </el-icon>
                                     <span>{{ subItem2.meta.title }}</span>
                                 </template>
-                                <el-menu-item :index="subItem2.path">
+                                <el-menu-item :index="subItem2.name">
                                     <el-icon>
                                         <component :is="subItem2.meta.icon" />
                                     </el-icon>
@@ -40,7 +39,7 @@
                                 </el-menu-item>
                             </el-sub-menu>
                             <!-- 无子路由 -->
-                            <el-menu-item v-else :index="subItem2.path">
+                            <el-menu-item v-else :index="subItem2.name" @click="handleClickMenu(subItem2)">
                                 <el-icon>
                                     <component :is="subItem2.meta.icon" />
                                 </el-icon>
@@ -50,7 +49,7 @@
                         <!-- 嵌套递归 -->
                     </el-sub-menu>
                     <!-- 无子路由 -->
-                    <el-menu-item v-else :index="subItem.path">
+                    <el-menu-item v-else :index="subItem.name" @click="handleClickMenu(subItem)">
                         <el-icon>
                             <component :is="subItem.meta.icon" />
                         </el-icon>
@@ -66,6 +65,8 @@
 import { main } from '@/store'
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { Menu } from '@/interface'
+
 const mainState = main()
 
 const isExpand = computed(() => mainState.isExpand)
@@ -75,8 +76,12 @@ const [router, route] = [useRouter(), useRoute()]
 
 const layoutChildren: any = router.options.routes.find(e => e.name === 'layout')?.children
 
-const activeMenu = computed(() => route.meta.activeMenu ? route.meta.activeMenu : route.path) as any
-// console.log(activeMenu.value)
+const activeMenu = computed(() => route.meta.activeMenu ? route.meta.activeMenu : route.name) as any
+
+//处理点击菜单
+const handleClickMenu = (menu: Menu.MenuOptions) => {
+    router.push({name:menu.name})
+}
 
 //根据屏幕大小判断菜单栏是否展开
 const screenWidth = document.body.clientWidth

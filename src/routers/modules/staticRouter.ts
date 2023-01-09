@@ -17,13 +17,13 @@ export const staticRouter: RouteRecordRaw[] = [
         },
     },
     {
-        path: '/layout',
+        path: '/',
         name: 'layout',
         component: () => import('@/layouts/index.vue'),
-        redirect: { name: 'home' },
+        redirect: { name: 'home' }, //有children就要写redirect 否则面包屑有问题
         children: [
             {
-                path: '/home',
+                path: 'home',
                 name: 'home',
                 component: () => import('@/views/home/index.vue'),
                 meta:{
@@ -32,21 +32,31 @@ export const staticRouter: RouteRecordRaw[] = [
                 }
             },
             {
-                path: '/ho',
+                path: 'ho',
                 name: 'home222',
                 component: () => import('@/views/home/index.vue'),
                 meta:{
                     icon:'EditPen',
                     title:'首页123',
                 },
+                redirect: { name: 'home3333' },
                 children: [
                     {
-                        path: '/h',
+                        path: 'h',
                         name: 'home3333',
                         component: () => import('@/views/home/index.vue'),
                         meta:{
                             icon:'HomeFilled',
                             title:'首页22',
+                        }
+                    },
+                    {
+                        path: 'h44',
+                        name: 'home44444',
+                        component: () => import('@/views/home/index.vue'),
+                        meta:{
+                            icon:'HomeFilled',
+                            title:'首页2244',
                         }
                     },
                 ]
