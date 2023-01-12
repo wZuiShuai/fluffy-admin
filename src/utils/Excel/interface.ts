@@ -8,4 +8,10 @@ export namespace Excel {
         json2sheetOpts?: JSON2SheetOpts
         write2excelOpts?: WritingOptions
     }
+    export interface AoaToSheet<T = any> {
+        data: T[][]
+        header?: T[]
+        fileName?: string
+        write2excelOpts?: WritingOptions
+    }
 }

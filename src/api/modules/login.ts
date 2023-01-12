@@ -1,5 +1,5 @@
 import http from '@/api'
-import { Login,ResPages } from '@/interface'
+import { Login,ResPages } from '@/api/interface'
 
 export const loginApi = (params: Login.ReqLoginForm) => {
     return http.post<Login.ResLogin>('/user/login', params)

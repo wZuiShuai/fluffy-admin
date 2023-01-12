@@ -28,7 +28,7 @@
 
 <script setup lang="ts" name="login">
 import { reactive, ref } from 'vue'
-import { Login } from '@/interface/index'
+import { Login } from '@/api/interface/index'
 import { loginApi } from '@/api/modules/login'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'

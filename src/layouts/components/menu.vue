@@ -65,7 +65,7 @@
 import { main } from '@/store'
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Menu } from '@/interface'
+import { Menu } from '@/api/interface'
 
 const mainState = main()
 

@@ -10,7 +10,7 @@ import { checkStatus } from '@/api/config/checkStatus'
 import { ElMessage } from 'element-plus'
 import { main } from '@/store'
 import router from '@/routers'
-import { ResultData } from '@/interface'
+import { ResultData } from '@/api/interface'
 
 /**
  * pinia 错误使用说明示例
