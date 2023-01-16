@@ -46,7 +46,7 @@ import { useFullscreen } from '@vueuse/core'
 import { inject } from 'vue'
 
 const toggleDark: any = inject('toggleDark')
-const isDark: string | undefined = inject('isDark')
+const isDark: any = inject('isDark')
 //全屏
 const { isFullscreen, toggle } = useFullscreen()
 

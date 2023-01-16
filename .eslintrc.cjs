@@ -42,7 +42,7 @@ module.exports = {
         'no-func-assign': 'warn', // 禁止对Function声明重新赋值
         'no-unreachable': 'warn', // 禁止出现[return|throw]之后的代码块
         'no-else-return': 'warn', // 禁止if语句中return语句之后有else块
-        'no-empty-function': 'warn', // 禁止出现空的函数块
+        '@typescript-eslint/no-empty-function': 'off', // 禁止出现空的函数块
         'no-lone-blocks': 'warn', // 禁用不必要的嵌套块
         'no-multi-spaces': 'warn', // 禁止使用多个空格
         'no-redeclare': 'warn', // 禁止多次声明同一变量
@@ -70,7 +70,7 @@ module.exports = {
         'arrow-spacing': 'warn', // 要求箭头函数的箭头前后使用一致的空格
         'array-bracket-spacing': 'warn', // 要求数组方括号中使用一致的空格
         'brace-style': 'warn', // 要求在代码块中使用一致的大括号风格
-        'camelcase': 'warn', // 要求使用骆驼拼写法命名约定
+        'camelcase': 0, // 要求使用骆驼拼写法命名约定
         'indent': 'off',
         '@typescript-eslint/indent': ['error',4],
         'max-depth': ['warn', 4], // 要求可嵌套的块的最大深度4

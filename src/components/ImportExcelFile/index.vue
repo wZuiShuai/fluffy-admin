@@ -88,7 +88,6 @@ const readerData = (rawFile: any) => {
             } catch (error) {
                 reject(error)
             } /* finally {
-                // eslint-disable-next-line no-console
                 console.log('调用了FileReader.onload')
             } */
         }
