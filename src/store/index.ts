@@ -14,7 +14,7 @@ export const main = defineStore('main', {
         // userInfo
         userInfo: {},
         //国际化
-        i18n: 'zh',
+        i18n: 'zh_CN',
         isExpand:true
     }),
     getters: {},
